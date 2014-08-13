@@ -4,5 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <TextView 
+        android:id="@+id/main_tv"
+        android:text="洞幺洞幺，我是洞拐，请回答；洞拐洞拐，洞幺收到，请你用你的身体去炸碉堡！保家卫国！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
