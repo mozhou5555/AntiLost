@@ -29,7 +29,7 @@ public class Fragment1 extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity(), "ssssssss", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "按钮测试", Toast.LENGTH_SHORT).show();
 			}
 		});
 		
