@@ -3,7 +3,7 @@
 
     <string name="app_name">防丢魔鬼训练营</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="setting">设置</string>
     <string name="forgetfulbar">健忘指数：</string>
     <string name="runtime">魔鬼教练呵护日常：</string>
     <string name="graduate_time">出师剩余时间：</string>
