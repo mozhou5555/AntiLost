@@ -4,8 +4,13 @@
     <string name="app_name">防丢魔鬼训练营</string>
     <string name="hello_world">Hello world!</string>
     <string name="setting">设置</string>
+    <string name="ok">完成</string>
     <string name="forgetfulbar">健忘指数：</string>
     <string name="runtime">魔鬼教练呵护日常：</string>
     <string name="graduate_time">出师剩余时间：</string>
-
+	<string name="switch1">防丢模式未开启</string>
+	<string name="switch2">防丢模式已开启</string>
+	<string name="set_new_time">新增提醒时段</string>
+	<string name="set_time">设置时间</string>
+	
 </resources>

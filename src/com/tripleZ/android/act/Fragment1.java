@@ -1,19 +1,35 @@
 package com.tripleZ.android.act;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.tripleZ.android.R;
+import com.tripleZ.android.util.DateUtil;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class Fragment1 extends Fragment{
 	private View fragment1;
-	private Button btnTest;
+	private Button btnSwitch;
+	private ProgressBar pbForgetful;
+	private TextView tvRuntime;
+	private TextView tvGraduateTime;
+	private Date runTime;
+	private Date graduateTime;
+	private static final int UPDATE_TIME = 1;
+	
+	private boolean status;	//false:关闭状态   true:开启状态
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,15 +40,78 @@ public class Fragment1 extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		fragment1 = inflater.inflate(R.layout.fragment1, container, false);
-		btnTest = (Button) fragment1.findViewById(R.id.fragment1_btn_test);
-		btnTest.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(getActivity(), "按钮测试", Toast.LENGTH_SHORT).show();
-			}
-		});
-		
+		initWidget();
+		initLogic();
 		return fragment1;
 	}
+	
+	private void initWidget(){
+		btnSwitch = (Button) fragment1.findViewById(R.id.fragment1_btn_switch);
+		pbForgetful = (ProgressBar) fragment1.findViewById(R.id.fragment1_pb_forgetfulbar);
+    	tvRuntime = (TextView) fragment1.findViewById(R.id.fragment1_tv_runtime);
+    	tvGraduateTime = (TextView) fragment1.findViewById(R.id.fragment1_tv_graduate_time);
+		
+		onBtnClickListener obc = new onBtnClickListener();
+		btnSwitch.setOnClickListener(obc);
+	}
+	
+	private void initLogic(){
+		runTime = new Date();//应当获取保存数据，还没有，暂时为当前时间
+    	graduateTime = new Date();//应当获取保存数据，还没有，暂时为当前时间
+    	Timer timer = new Timer();
+        timer.schedule(new RemindTask(), 0, 1000);
+	}
+	
+	private class RemindTask extends TimerTask {
+        public void run() {
+        	myHandler.sendEmptyMessage(UPDATE_TIME);
+        }
+    }
+    
+	private class onBtnClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.fragment1_btn_switch:
+				if(status){
+					btnSwitch.setText(getResources().getString(R.string.switch1));
+					status = false;
+				}else{
+					btnSwitch.setText(getResources().getString(R.string.switch2));
+					status = true;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	
+	protected Handler myHandler = new Handler(){
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case UPDATE_TIME:
+				tvRuntime.setText(plusTime());
+	        	tvGraduateTime.setText(minusTime());
+				break;
+				
+			default:
+				break;
+			}
+		}
+	};
+	
+	private String plusTime(){
+    	runTime = DateUtil.addOneSecond(runTime);
+    	String time = DateUtil.getSecondOnlyStr(runTime);
+		return time;
+    }
+    
+    private String minusTime(){
+    	graduateTime = DateUtil.minusOneSecond(graduateTime);
+    	String time = DateUtil.getSecondOnlyStr(graduateTime);
+		return time;
+    }
 }

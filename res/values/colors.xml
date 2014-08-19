@@ -288,6 +288,10 @@
     <color name="button_green">#27B627</color>
     
     <color name="button_darkgreen">#239C23</color>
+    
+    <color name="button_green2">#99cc00</color>
+    
+    <color name="button_darkgreen2">#669900</color>
     <!-- 中春绿色 -->
     <color name="darkturquoise">#00ced1</color>
     <!-- 暗宝石绿 -->

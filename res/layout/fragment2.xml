@@ -3,9 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-	<TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="222222222"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ListView 
+            android:id="@+id/fragment2_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+        <Button
+            android:id="@+id/fragment2_btn_tp"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_green2"
+            android:text="@string/set_new_time"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
 </LinearLayout>
