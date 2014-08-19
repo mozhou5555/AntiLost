@@ -43,8 +43,8 @@ public class MainActivity extends ActionBarActivity {
     private void initWidget(){
     	actionBar = getSupportActionBar();
     	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.addTab(actionBar.newTab().setText("界面1").setTabListener(new MyTabListener()));
-        actionBar.addTab(actionBar.newTab().setText("界面2").setTabListener(new MyTabListener()));
+        actionBar.addTab(actionBar.newTab().setText("总览").setTabListener(new MyTabListener()));
+        actionBar.addTab(actionBar.newTab().setText("时间").setTabListener(new MyTabListener()));
         
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 		mTabPagerList.add(new Fragment1());
