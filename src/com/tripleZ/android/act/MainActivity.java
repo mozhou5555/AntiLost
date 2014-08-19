@@ -18,17 +18,19 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
-	ActionBar actionBar;
-	ViewPager mViewPager;
-	MyPagerAdapter mTabPagerAdapter;
-	List<Fragment> mTabPagerList = new ArrayList<Fragment>();
+	private ActionBar actionBar;
+	private ViewPager mViewPager;
+	private List<Fragment> mTabPagerList = new ArrayList<Fragment>();
+	private Toast toast;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,4 +156,22 @@ public class MainActivity extends ActionBarActivity {
             e.printStackTrace();  
         }  
     }  
+	
+	private long exitTime = 0;  
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				toast = Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT);
+				toast.show();
+				exitTime = System.currentTimeMillis(); 
+			}else{
+				finish();
+				System.exit(0);
+				toast.cancel();
+			}
+	    } 
+		return false;
+	}
 }

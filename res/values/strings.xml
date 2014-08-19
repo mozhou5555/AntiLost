@@ -12,5 +12,8 @@
 	<string name="switch2">防丢模式已开启</string>
 	<string name="set_new_time">新增提醒时段</string>
 	<string name="set_time">设置时间</string>
+	<string name="choose_date">选择提醒时期</string>
+	<string name="choose_starttime">选择开始时间</string>
+	<string name="choose_endtime">选择结束时间</string>
 	
 </resources>

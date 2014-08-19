@@ -1,13 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
+	<ScrollView 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     
-	<TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text=""
-	    android:textColor="@color/black"
-	    android:textSize="16sp"/>
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/timeset_ll_setdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/choose_date"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#ffe0e0e0"
+            android:layout_marginTop="10dp"/>
+        
+        <TextView
+            android:id="@+id/timeset_tv_setdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="每天"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+	
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginTop="10dp"
+            	android:text="@string/choose_starttime"
+            	android:textColor="@color/black"
+            	android:textSize="16sp"/>
+            
+            <TimePicker 
+                android:id="@+id/timeset_tp_starttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginTop="10dp"
+            	android:text="@string/choose_endtime"
+            	android:textColor="@color/black"
+           	 	android:textSize="16sp"/>
+            
+            <TimePicker 
+                android:id="@+id/timeset_tp_endtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    	
+    <Button
+		android:id="@+id/timeset_btn_ok"
+		android:layout_width="fill_parent"
+		android:layout_height="45dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
+		android:background="@drawable/button_green2"
+		android:text="@string/ok"
+		android:textSize="18sp"
+		android:textColor="@color/white" />
+    </LinearLayout>
+    
+    </ScrollView>
+    
+</RelativeLayout>
