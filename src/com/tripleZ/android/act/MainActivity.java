@@ -168,7 +168,6 @@ public class MainActivity extends ActionBarActivity {
 				exitTime = System.currentTimeMillis(); 
 			}else{
 				finish();
-				System.exit(0);
 				toast.cancel();
 			}
 	    } 

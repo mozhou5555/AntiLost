@@ -5,8 +5,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.tripleZ.android.R;
+import com.tripleZ.android.service.VibrateService;
 import com.tripleZ.android.util.DateUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -74,12 +76,17 @@ public class Fragment1 extends Fragment{
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.fragment1_btn_switch:
-				if(status){
+				if(status){	//关闭服务
 					btnSwitch.setText(getResources().getString(R.string.switch1));
 					status = false;
-				}else{
+					Intent intent = new Intent(getActivity(), VibrateService.class);
+					getActivity().stopService(intent);
+				}else{	//启动服务
 					btnSwitch.setText(getResources().getString(R.string.switch2));
 					status = true;
+					Intent intent = new Intent(getActivity(), VibrateService.class);
+					getActivity().startService(intent);
+					
 				}
 				break;
 
