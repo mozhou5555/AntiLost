@@ -25,15 +25,15 @@ public class LogUtil {
 	public static void writeLog(Context context,LogUtil lu, String message) {
 			try {
 				File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/antilost/" + lu.getFilename());
-				if (!f.exists()){       
+				if (!f.exists()){
 		            f.createNewFile();      
 		        }
 				String nowTime = DateUtil.getSecondStr(new Date());
 				String info = "";
-				OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(f,true) , "gbk");
+				OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(f,true) , "GBK");
 				info = nowTime + "  " + message + "\r\n";
 				BufferedWriter writer=new BufferedWriter(write);
-				writer.write(info);      
+				writer.write(info);
 		        writer.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

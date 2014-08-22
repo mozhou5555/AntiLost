@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Fragment2 extends Fragment{
 	private View fragment2;
@@ -88,11 +89,13 @@ public class Fragment2 extends Fragment{
 			        sm.registerListener(myAccelerometerListener,sm.getDefaultSensor(sensorType),SensorManager.SENSOR_DELAY_NORMAL); 
 			        isRunning = true;
 			        btnTp.setText("已启动-点击停止检测运动");
+			        Toast.makeText(getActivity(), "运动开始", Toast.LENGTH_SHORT).show();
 				}else{
 					isRunning = false;
 					sm.unregisterListener(myAccelerometerListener);
 					LogUtil.writeLog(getActivity(), lu, "--运动结束--");
 					btnTp.setText("未启动-点击开始检测运动");
+					Toast.makeText(getActivity(), "运动结束", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
