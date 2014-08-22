@@ -19,6 +19,8 @@ public class DateUtil {
 	private static final SimpleDateFormat DAY_ONLY = getFormat("MM:dd");
 
 	private static final SimpleDateFormat SECOND = getFormat("yyyy-MM-dd HH:mm:ss");
+	
+	private static final SimpleDateFormat SECOND2 = getFormat("yyyy-MM-dd HH-mm-ss");
 
 	private static final SimpleDateFormat SECOND_ONLY = getFormat("HH:mm:ss");
 
@@ -131,6 +133,12 @@ public class DateUtil {
 	public static String getSecondStr(Date date) {
 		synchronized (SECOND) {
 			return getStr(date, SECOND);
+		}
+	}
+	
+	public static String getSecondAnotherStr(Date date) {
+		synchronized (SECOND2) {
+			return getStr(date, SECOND2);
 		}
 	}
 

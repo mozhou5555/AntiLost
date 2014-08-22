@@ -74,7 +74,7 @@ public class Fragment2 extends Fragment{
 //				Intent intent = new Intent(getActivity(), TimeSetActivity.class);
 //				startActivity(intent);
 				if(!isRunning){
-					lu.setFilename(DateUtil.getSecondStr(new Date()) + ".txt");
+					lu.setFilename(DateUtil.getSecondAnotherStr(new Date()) + ".txt");
 					LogUtil.writeLog(getActivity(), lu, "--运动开始--");
 					//创建一个SensorManager来获取系统的传感器服务 
 			        sm = (SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE); 
