@@ -1,9 +1,9 @@
-package com.tripleZ.android.act;
+package com.zzz.android.act;
 
 import java.util.Calendar;
 
-import com.tripleZ.android.R;
-import com.tripleZ.android.service.AlarmReceiver;
+import com.zzz.android.R;
+import com.zzz.android.service.AlarmReceiver;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

@@ -1,12 +1,12 @@
-package com.tripleZ.android.act;
+package com.zzz.android.act;
 
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.tripleZ.android.R;
-import com.tripleZ.android.service.VibrateService;
-import com.tripleZ.android.util.DateUtil;
+import com.zzz.android.R;
+import com.zzz.android.service.VibrateService;
+import com.zzz.android.util.DateUtil;
 
 import android.content.Intent;
 import android.os.Bundle;

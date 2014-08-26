@@ -1,4 +1,4 @@
-package com.tripleZ.android.util;
+package com.zzz.android.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

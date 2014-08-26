@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tripleZ.android"
+    package="com.zzz.android"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 	
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />  <!-- 开机启动权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     
     <application
-        android:name="com.tripleZ.android.BaseApplication"
+        android:name="com.zzz.android.BaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:persistent="true" >
         <activity
-            android:name="com.tripleZ.android.act.MainActivity"
+            android:name="com.zzz.android.act.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,22 +32,28 @@
         </activity>
         
         <activity 
-            android:name="com.tripleZ.android.act.TimeSetActivity"
-            android:parentActivityName="com.tripleZ.android.act.MainActivity"
+            android:name="com.zzz.android.act.TimeSetActivity"
+            android:parentActivityName="com.zzz.android.act.MainActivity"
             android:label="@string/app_name">
             
         </activity>
         
-        <service android:enabled="true" android:name="com.tripleZ.android.service.VibrateService" />
+        <service android:enabled="true" android:name=".service.VibrateService" />
         
-        <receiver android:name="com.tripleZ.android.service.BootBroadcastReceiver">  
+        <receiver android:name="com.zzz.android.service.BootBroadcastReceiver">  
         	<intent-filter>  
         		<action android:name="android.intent.action.BOOT_COMPLETED"></action>  
         		<category android:name="android.intent.category.LAUNCHER" />  
        		</intent-filter>  
-        </receiver>  
+        </receiver>
         
-        <receiver android:name="com.tripleZ.android.service.AlarmReceiver" android:process=":remote"></receiver>
+        <receiver android:name="com.zzz.android.service.UnLockReceiver">  
+        	<intent-filter android:priority="90000">
+            	<action android:name="android.intent.action.USER_PRESENT" />  
+        	</intent-filter>  
+    	</receiver> 
+        
+        <receiver android:name=".service.AlarmReceiver" android:process=":remote"></receiver>
     </application>
 
 </manifest>

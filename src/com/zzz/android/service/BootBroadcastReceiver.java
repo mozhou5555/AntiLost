@@ -1,4 +1,4 @@
-package com.tripleZ.android.service;
+package com.zzz.android.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

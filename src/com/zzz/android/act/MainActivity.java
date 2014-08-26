@@ -1,11 +1,11 @@
-package com.tripleZ.android.act;
+package com.zzz.android.act;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tripleZ.android.R;
+import com.zzz.android.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
