@@ -4,6 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * 解锁屏幕广播
+ * @author Jing
+ *
+ */
 public class UnLockReceiver extends BroadcastReceiver{
 
 	@Override

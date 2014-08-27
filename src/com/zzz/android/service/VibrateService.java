@@ -143,7 +143,7 @@ public class VibrateService extends Service{
                     distanceY = (float) (distanceY + (Math.abs(y)* ((double)(diffTime) / 1000)*((double)(diffTime) / 1000)));
                     distanceZ = (float) (distanceZ + (Math.abs(z)* ((double)(diffTime) / 1000)*((double)(diffTime) / 1000)));
 //                    System.out.println("======"+ Math.abs(x)+"   " +Math.abs(y) +"   " + Math.abs(z)+ "    "+((double)(diffTime) / 1000)+"    "+distanceX);
-                    a = (float) Math.sqrt((double)(Math.abs(x*x) + Math.abs(y*y) + Math.abs(z*z)));
+                    a = a + (float) Math.sqrt((double)(Math.abs(x*x) + Math.abs(y*y) + Math.abs(z*z)));
                     distance = (float) (distance + (Math.abs(a)* ((double)(diffTime) / 1000)*((double)(diffTime) / 1000)));
                     lastX = x;
                     lastY = y;
@@ -151,11 +151,11 @@ public class VibrateService extends Service{
                     lastUpdate = currentTime;
                     	
                     if(currentTime - lastUpdate2 > 5 * 1000){
-                    	System.out.println("=====大致距离:" + distanceX + "   "+ distanceY +"    "+ distanceZ+ "   "+( distanceX + distanceY + distanceZ));
+                    	System.out.println("=====大致距离:" + distanceX + "   "+ distanceY +"    "+ distanceZ+ "   "+ (distanceX + distanceY + distanceZ));
                     	LogUtil.writeLog(VibrateService.this, lu, "大致距离x:" + distanceX + "  y:" + distanceY + " z:" + distanceZ +"  总计:"+(distanceX + distanceY +distanceZ));
                     	System.out.println("======="+a);
                     	LogUtil.writeLog(VibrateService.this, lu, "整体加速度算的距离:" + a);
-                    	if(a > 5){
+                    	if((distanceX + distanceY + distanceZ) > 5 && (distanceX + distanceY + distanceZ) < 1000){
                     		vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                     		long [] pattern = {1000,300,1000,300};   // 停止 开启 停止 开启
                     		vibrator.vibrate(pattern, 2); //震动启动， -1表示只有1次 ，2表示无限恶心你
