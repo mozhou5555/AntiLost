@@ -30,7 +30,6 @@ public class Fragment1 extends Fragment{
 	private Date runTime;
 	private Date graduateTime;
 	private static final int UPDATE_TIME = 1;
-	
 	private boolean status;	//false:关闭状态   true:开启状态
 	
 	@Override
