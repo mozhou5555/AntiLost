@@ -38,7 +38,7 @@ public class BaseApplication extends Application{
           
         //包装需要执行Service的Intent  
         Intent intent = new Intent(getInstance(), VibrateService.class);  
-        PendingIntent pendingIntent = PendingIntent.getService(getInstance(), 22, intent, PendingIntent.FLAG_UPDATE_CURRENT);  
+        PendingIntent pendingIntent = PendingIntent.getService(getInstance(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);  
           
         //触发服务的起始时间  
         long triggerAtTime = SystemClock.elapsedRealtime();  
@@ -52,7 +52,7 @@ public class BaseApplication extends Application{
     	System.out.println("=====结束了轮询服务");
         AlarmManager manager = (AlarmManager) getInstance().getSystemService(getInstance().ALARM_SERVICE);  
         Intent intent = new Intent(getInstance(), VibrateService.class);  
-        PendingIntent pendingIntent = PendingIntent.getService(getInstance(), 22, intent, PendingIntent.FLAG_UPDATE_CURRENT);  
+        PendingIntent pendingIntent = PendingIntent.getService(getInstance(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);  
         //取消正在执行的服务  
         manager.cancel(pendingIntent);  
     }
