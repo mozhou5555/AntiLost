@@ -34,7 +34,7 @@ public class BaseApplication extends Application{
     public static void startPollingService() {  
     	System.out.println("=====开启了轮询服务!");
         //获取AlarmManager系统服务  
-        AlarmManager manager = (AlarmManager) getInstance().getSystemService(getInstance().ALARM_SERVICE);  
+        AlarmManager manager = (AlarmManager) getInstance().getSystemService(ALARM_SERVICE);
           
         //包装需要执行Service的Intent  
         Intent intent = new Intent(getInstance(), VibrateService.class);  
