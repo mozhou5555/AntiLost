@@ -21,7 +21,7 @@ public class SettingActionProvider extends ActionProvider{
 	}
 	
 	@Override
-	public void onPrepareSubMenu(SubMenu subMenu) {
+	public void onPrepareSubMenu(SubMenu subMenu) { 
 		super.onPrepareSubMenu(subMenu);
 		subMenu.clear(); 
 		subMenu.add(getContext().getResources().getString(R.string.setting)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
