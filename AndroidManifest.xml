@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zzz.android"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.8.1" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -35,7 +35,12 @@
             android:name="com.zzz.android.act.TimeSetActivity"
             android:parentActivityName="com.zzz.android.act.MainActivity"
             android:label="@string/app_name">
-            
+        </activity>
+        
+        <activity 
+            android:name="com.zzz.android.act.AboutActivity"
+            android:parentActivityName="com.zzz.android.act.MainActivity"
+            android:label="@string/app_name">
         </activity>
         
         <service android:enabled="true" android:name=".service.VibrateService" />

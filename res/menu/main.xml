@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tripleZ.android.MainActivity" >
 
-    <item  
+    <item
         android:id="@+id/menu_nav"  
-        app:showAsAction="ifRoom"
-        android:title="@string/setting">  
+        android:icon="@drawable/abc_ic_menu_moreoverflow_normal_holo_dark"
+        app:showAsAction="always"
+        app:actionProviderClass="com.zzz.android.act.SettingActionProvider"
+       	android:title="@string/setting">  
     </item>
     
 </menu>

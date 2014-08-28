@@ -11,10 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.TimePicker.OnTimeChangedListener;
 
 public class TimeSetActivity extends ActionBarActivity{
@@ -66,10 +68,18 @@ public class TimeSetActivity extends ActionBarActivity{
 	}
 	
 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			this.finish();
+			finish();
 			break;
 
 		default:

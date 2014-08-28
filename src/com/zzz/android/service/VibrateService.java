@@ -39,6 +39,7 @@ public class VibrateService extends Service{
 		// TODO Auto-generated method stub
 		super.onCreate();
 		Log.v("SERVICE", "=====服务OnCreat======");
+		CheckStatus();
 	}
 	
 	@Override
@@ -51,32 +52,40 @@ public class VibrateService extends Service{
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
-		if(isServiceRunning(this, "com.zzz.android.service.VibrateService")){
+		if(!isServiceRunning(this, "com.zzz.android.service.VibrateService")){
 			Log.v("SERVICE", "=====服务OnStart======");
-//			if(DateUtil.compareHHmmInString(DateUtil.getMinuteOnlyStr(new Date()), "21:28") == 0){
-//				//系统时间到了预定的时间后
-				PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-				mWakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "VibrateService");// CPU保存运行
-				if (null != mWakeLock){  
-					mWakeLock.acquire();  
-	            }
-			 
-	    		lu.setFilename(DateUtil.getSecondAnotherStr(new Date()) + ".txt");
-//				LogUtil.writeLog(getActivity(), lu, "--运动开始--");
-				//创建一个SensorManager来获取系统的传感器服务 
-		        sm = (SensorManager)this.getSystemService(Context.SENSOR_SERVICE); 
-		        //选取加速度感应器 
-		        int sensorType = Sensor.TYPE_LINEAR_ACCELERATION; 
-				/* 
-		         * 最常用的一个方法 注册事件 
-		         * 参数1 ：SensorEventListener监听器 
-		         * 参数2 ：Sensor 一个服务可能有多个Sensor实现，此处调用getDefaultSensor获取默认的Sensor 
-		         * 参数3 ：模式 可选数据变化的刷新频率 
-		         * */
-		        sm.registerListener(myAccelerometerListener,sm.getDefaultSensor(sensorType),SensorManager.SENSOR_DELAY_NORMAL); 
+			CheckStatus();
 		}else{
 			Log.v("SERVICE", "=====服务正在运行，无需再次启动======");
 		}
+	}
+	
+	/**
+	 * 检测状态
+	 */
+	private void CheckStatus(){
+//		if(DateUtil.compareHHmmInString(DateUtil.getMinuteOnlyStr(new Date()), "21:28") == 0){
+//			//系统时间到了预定的时间后
+			PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+			mWakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "VibrateService");// CPU保存运行
+			if (null != mWakeLock){  
+				mWakeLock.acquire();  
+            }
+		 
+    		lu.setFilename(DateUtil.getSecondAnotherStr(new Date()) + ".txt");
+//			LogUtil.writeLog(getActivity(), lu, "--运动开始--");
+			//创建一个SensorManager来获取系统的传感器服务 
+	        sm = (SensorManager)this.getSystemService(Context.SENSOR_SERVICE); 
+	        //选取加速度感应器 
+	        int sensorType = Sensor.TYPE_LINEAR_ACCELERATION; 
+			/* 
+	         * 最常用的一个方法 注册事件 
+	         * 参数1 ：SensorEventListener监听器 
+	         * 参数2 ：Sensor 一个服务可能有多个Sensor实现，此处调用getDefaultSensor获取默认的Sensor 
+	         * 参数3 ：模式 可选数据变化的刷新频率 
+	         * */
+	        sm.registerListener(myAccelerometerListener,sm.getDefaultSensor(sensorType),SensorManager.SENSOR_DELAY_NORMAL); 
+//		}
 	}
 	
 	private class RemindTask extends TimerTask {
@@ -152,10 +161,10 @@ public class VibrateService extends Service{
                     	
                     if(currentTime - lastUpdate2 > 5 * 1000){
                     	System.out.println("=====大致距离:" + distanceX + "   "+ distanceY +"    "+ distanceZ+ "   "+ (distanceX + distanceY + distanceZ));
-                    	LogUtil.writeLog(VibrateService.this, lu, "大致距离x:" + distanceX + "  y:" + distanceY + " z:" + distanceZ +"  总计:"+(distanceX + distanceY +distanceZ));
+//                    	LogUtil.writeLog(VibrateService.this, lu, "大致距离x:" + distanceX + "  y:" + distanceY + " z:" + distanceZ +"  总计:"+(distanceX + distanceY +distanceZ));
                     	System.out.println("======="+a);
-                    	LogUtil.writeLog(VibrateService.this, lu, "整体加速度算的距离:" + a);
-                    	if((distanceX + distanceY + distanceZ) > 5 && (distanceX + distanceY + distanceZ) < 1000){
+//                    	LogUtil.writeLog(VibrateService.this, lu, "整体加速度算的距离:" + a);
+                    	if((distanceX + distanceY + distanceZ) > 5 && (distanceX + distanceY + distanceZ) < 500){
                     		vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                     		long [] pattern = {1000,300,1000,300};   // 停止 开启 停止 开启
                     		vibrator.vibrate(pattern, 2); //震动启动， -1表示只有1次 ，2表示无限恶心你
@@ -164,6 +173,7 @@ public class VibrateService extends Service{
                     	distanceX = 0;
                     	distanceY = 0;
                     	distanceZ = 0;
+                    	a = 0;
                     }
             } 
         } 
@@ -183,11 +193,12 @@ public class VibrateService extends Service{
         boolean isRunning = false;
         ActivityManager activityManager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE); 
         List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
-        if (!(serviceList.size()>0)) {
+        if (!(serviceList.size() > 0)) {
             return false;
         }
-        for (int i=0; i<serviceList.size(); i++) {
-            if (serviceList.get(i).service.getClassName().equals(className) == true) {
+        
+        for (int i = 0; i < serviceList.size(); i++) {
+            if (serviceList.get(i).service.getClassName().equals(className)) {
                 isRunning = true;
                 break;
             }
