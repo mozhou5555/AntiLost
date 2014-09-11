@@ -16,7 +16,7 @@ public class BaseApplication extends Application{
 	
 	@Override
 	public void onCreate() {
-		super.onCreate();
+		super.onCreate();  
 		instance = this;
 //		System.out.println("=======注册广播");
 		File destDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/antilost/");
